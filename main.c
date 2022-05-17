@@ -4,24 +4,41 @@
 #include <time.h>
 #define altura 720
 #define largura 1280
+#define framesSpeed 10
 
 int main(void) {    
     InitWindow(largura, altura, "Steal the Code");
 
     SetTargetFPS(60);
 
-    // Loading Textures
+    // Loading Textures BOTÕES E LOGO
     Texture2D logo_inicial = LoadTexture("textures/logoInicial.png");
     Texture2D logo_jogo = LoadTexture("textures/logoJogo.png");
     Texture2D logo_menu = LoadTexture("textures/logoMenu.png");
     Texture2D botao_start = LoadTexture("textures/Play.png");
     Texture2D botao_instru = LoadTexture("textures/Instructions.png");
+		
+    // Texture Cenario Stage 2
+    Texture2D teste = LoadTexture("textures/test.png");
 
+    // Loading Texture and PATRICK
+    Vector2 pat_position = { (float)largura/2, (float)altura/2 };
+    Texture2D patrick = LoadTexture("textures/Patrick_etapa2.png");
+    Rectangle frameRec = { 0.0f, 0.0f, (float)patrick.width/3, (float)patrick.height };
+
+    // Variables Booleanas
     bool inicia_imagem = true;
     bool inicia_texto = false;
-	bool inicia_jogo = false;
-	int count_imagem = 0;
+    bool inicia_jogo = false;
+
+    // Counters for the Intro
+    int count_imagem = 0;
     int count = 0;
+
+    // Counters for Stage 2
+	int currentFrame = 0;
+	int framesCounter = 0;
+	int count_cenario = 0;
 	
     while(!WindowShouldClose())
     {
@@ -63,7 +80,7 @@ int main(void) {
             }
             count++;
         }
-        else if(inicia_texto == false && inicia_imagem == false)
+        else if(inicia_texto == false && inicia_imagem == false && inicia_jogo == false)
         {
             if(inicia_jogo == false)
             {
@@ -78,6 +95,29 @@ int main(void) {
                     inicia_jogo=true;
                 }
             }
+        }
+        else if(inicia_jogo == true)
+		{
+            framesCounter++;
+            count_cenario = count_cenario + 2;
+                
+            if (framesCounter >= (60/framesSpeed))
+            {
+                framesCounter = 0;
+                currentFrame++;
+
+                if (currentFrame > 5) currentFrame = 0;
+
+                frameRec.x = (float)currentFrame*(float)patrick.width/3;
+            }
+
+            if (IsKeyDown(KEY_D)) pat_position.x += 2.0f;
+            if (IsKeyDown(KEY_A)) pat_position.x -= 2.0f;
+            if (IsKeyDown(KEY_W)) pat_position.y -= 2.0f;
+            if (IsKeyDown(KEY_S)) pat_position.y += 2.0f;
+
+            DrawTexture(teste, 0-count_cenario, 50, WHITE);
+            DrawTextureRec(patrick, frameRec, pat_position, WHITE);
         }
 
         //DrawText("Titi brabo!", 12/2, 12/2, 16, DARKGRAY);
