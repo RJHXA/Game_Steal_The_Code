@@ -148,7 +148,7 @@ int main(void) {
                 pat_position.x -= 2.0f;
             }
             if (IsKeyDown(KEY_W)) {
-                pat1Rec.y = (float)patrickEtapa1.height - (float)patrickEtapa1.height/2;
+                pat1Rec.y = (float)patrickEtapa1.height - (float)patrickEtapa1.height;
 
                 if (framesCounter >= (60/framesSpeed)) {
                     framesCounter = 0;
@@ -162,7 +162,7 @@ int main(void) {
                 pat_position.y -= 2.0f;
             }
             if (IsKeyDown(KEY_S)) {
-                pat1Rec.y = (float)patrickEtapa1.height - (float)patrickEtapa1.height/2;
+                pat1Rec.y = (float)patrickEtapa1.height - (float)patrickEtapa1.height;
 
                 if (framesCounter >= (60/framesSpeed)) {
                     framesCounter = 0;
