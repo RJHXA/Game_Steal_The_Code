@@ -22,9 +22,12 @@ int main(void) {
     Texture2D teste = LoadTexture("textures/test.png");
 
     // Loading Texture and PATRICK
+    Texture2D room13bj = LoadTexture("textures/Cenario1.6.png");
     Vector2 pat_position = { (float)largura/2, (float)altura/2 };
-    Texture2D patrick = LoadTexture("textures/Patrick_etapa2.png");
-    Rectangle frameRec = { 0.0f, 0.0f, (float)patrick.width/3, (float)patrick.height };
+    Texture2D patrickEtapa1 = LoadTexture("textures/PatrickPersonagem.png");
+    Texture2D patrickEtapa2 = LoadTexture("textures/Patrick_etapa2.png");
+    Rectangle pat1Rec = { 0.0f, 0.0f, (float)patrickEtapa1.width/6, (float)patrickEtapa1.height/2 }; 
+    Rectangle frameRec = { 0.0f, 0.0f, (float)patrickEtapa2.width/3, (float)patrickEtapa2.height };
 
     // Variables Booleanas
     bool inicia_imagem = true;
@@ -34,6 +37,9 @@ int main(void) {
     // Counters for the Intro
     int count_imagem = 0;
     int count = 0;
+
+    // counters for stage 1
+    int count_l = 0, count_r = 3, count_u = 0, count_d = 3;
 
     // Counters for Stage 2
 	int currentFrame = 0;
@@ -101,23 +107,77 @@ int main(void) {
             framesCounter++;
             count_cenario = count_cenario + 2;
                 
-            if (framesCounter >= (60/framesSpeed))
-            {
-                framesCounter = 0;
-                currentFrame++;
+            // if (framesCounter >= (60/framesSpeed))
+            // {
+            //     framesCounter = 0;
+            //     currentFrame++;
 
-                if (currentFrame > 5) currentFrame = 0;
+            //     if (currentFrame > 5) currentFrame = 0;
 
-                frameRec.x = (float)currentFrame*(float)patrick.width/3;
+            //     pat1Rec.x = (float)currentFrame*(float)patrickEtapa1.width/6;
+            // }
+
+
+            if (IsKeyDown(KEY_D)) {
+                pat1Rec.y = (float)patrickEtapa1.height/2;
+
+                if (framesCounter >= (60/framesSpeed)) {
+                    framesCounter = 0;
+                    currentFrame++;
+
+                    count_r++;
+                    if (count_r > 5) count_r = 3;
+
+                    pat1Rec.x = (float)count_r * (float)patrickEtapa1.width/6;
+                }
+                
+                pat_position.x += 2.0f;
+            }
+            if (IsKeyDown(KEY_A)) {
+                pat1Rec.y = (float)patrickEtapa1.height/2;
+
+                if (framesCounter >= (60/framesSpeed)) {
+                    framesCounter = 0;
+
+                    count_l++;
+                    if (count_l > 2) count_l = 0;
+
+                    pat1Rec.x = (float)count_l * (float)patrickEtapa1.width/6;
+                }
+
+                pat_position.x -= 2.0f;
+            }
+            if (IsKeyDown(KEY_W)) {
+                pat1Rec.y = (float)patrickEtapa1.height - (float)patrickEtapa1.height/2;
+
+                if (framesCounter >= (60/framesSpeed)) {
+                    framesCounter = 0;
+
+                    count_u++;
+                    if (count_u > 2) count_u = 0;
+
+                    pat1Rec.x = (float)count_u * (float)patrickEtapa1.width/6;
+                }
+
+                pat_position.y -= 2.0f;
+            }
+            if (IsKeyDown(KEY_S)) {
+                pat1Rec.y = (float)patrickEtapa1.height - (float)patrickEtapa1.height/2;
+
+                if (framesCounter >= (60/framesSpeed)) {
+                    framesCounter = 0;
+
+                    count_d++;
+                    if (count_d > 5) count_d = 3;
+
+                    pat1Rec.x = (float)count_d * (float)patrickEtapa1.width/6;
+                }
+
+                pat_position.y += 2.0f;
             }
 
-            if (IsKeyDown(KEY_D)) pat_position.x += 2.0f;
-            if (IsKeyDown(KEY_A)) pat_position.x -= 2.0f;
-            if (IsKeyDown(KEY_W)) pat_position.y -= 2.0f;
-            if (IsKeyDown(KEY_S)) pat_position.y += 2.0f;
-
-            DrawTexture(teste, 0-count_cenario, 50, WHITE);
-            DrawTextureRec(patrick, frameRec, pat_position, WHITE);
+            DrawTexture(room13bj, 0, 0, WHITE);
+            DrawTextureRec(patrickEtapa1, pat1Rec, pat_position, WHITE);
         }
 
         //DrawText("Titi brabo!", 12/2, 12/2, 16, DARKGRAY);
