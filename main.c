@@ -4,12 +4,12 @@
 #include <time.h>
 #define altura 720
 #define largura 1280
-#define framesSpeed 10
+#define framesSpeed 8
 
 int main(void) {    
     InitWindow(largura, altura, "Steal the Code");
 
-    SetTargetFPS(60);
+    SetTargetFPS(30);
 
     // Loading Textures BOTÕES E LOGO
     Texture2D logo_inicial = LoadTexture("textures/logoInicial.png");
@@ -45,6 +45,10 @@ int main(void) {
 	int currentFrame = 0;
 	int framesCounter = 0;
 	int count_cenario = 0;
+
+    //Flag Last Key
+    char last_key;
+    
 	
     while(!WindowShouldClose())
     {
@@ -130,7 +134,7 @@ int main(void) {
 
                     pat1Rec.x = (float)count_r * (float)patrickEtapa1.width/6;
                 }
-                
+                last_key = 'D';
                 pat_position.x += 2.0f;
             }
             if (IsKeyDown(KEY_A)) {
@@ -144,7 +148,7 @@ int main(void) {
 
                     pat1Rec.x = (float)count_l * (float)patrickEtapa1.width/6;
                 }
-
+                last_key = 'A';
                 pat_position.x -= 2.0f;
             }
             if (IsKeyDown(KEY_W)) {
@@ -160,6 +164,7 @@ int main(void) {
                 }
 
                 pat_position.y -= 2.0f;
+                last_key = 'W';
             }
             if (IsKeyDown(KEY_S)) {
                 pat1Rec.y = (float)patrickEtapa1.height - (float)patrickEtapa1.height;
@@ -173,7 +178,13 @@ int main(void) {
                     pat1Rec.x = (float)count_d * (float)patrickEtapa1.width/6;
                 }
 
-                pat_position.y += 2.0f;
+                    last_key = 'S';
+                    pat_position.y += 2.0f;
+                }
+            if (last_key = 'W'){
+                count_d = 0;
+            }
+
             }
 
             DrawTexture(room13bj, 0, 0, WHITE);
