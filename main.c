@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "physac.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -29,10 +30,16 @@ int main(void) {
     Rectangle pat1Rec = { 0.0f, 0.0f, (float)patrickEtapa1.width/6, (float)patrickEtapa1.height/2 }; 
     Rectangle frameRec = { 0.0f, 0.0f, (float)patrickEtapa2.width/3, (float)patrickEtapa2.height };
 
+    // initializing gabarito
+    Texture2D gabarito = LoadTexture("textures/GABARITO.png");
+    Vector2 gabarito_position = { (float)largura/4, (float)altura/4 };
+    Rectangle gabarito_rec = { 0.0f, 0.0f, (float)gabarito.width, (float)gabarito.height };
+
     // Variables Booleanas
     bool inicia_imagem = true;
     bool inicia_texto = false;
     bool inicia_jogo = false;
+    bool pegou_gabarito = false;
 
     // Counters for the Intro
     int count_imagem = 0;
@@ -70,7 +77,7 @@ int main(void) {
                 if(count_imagem > 180)
                 {
                     inicia_imagem = false;
-                    inicia_texto = true;
+                    inicia_texto = false;
                 }
             }
             count_imagem++;
@@ -110,17 +117,6 @@ int main(void) {
 		{
             framesCounter++;
             count_cenario = count_cenario + 2;
-                
-            // if (framesCounter >= (60/framesSpeed))
-            // {
-            //     framesCounter = 0;
-            //     currentFrame++;
-
-            //     if (currentFrame > 5) currentFrame = 0;
-
-            //     pat1Rec.x = (float)currentFrame*(float)patrickEtapa1.width/6;
-            // }
-
 
             if (IsKeyDown(KEY_D)) {
                 pat1Rec.y = (float)patrickEtapa1.height/2;
@@ -185,13 +181,16 @@ int main(void) {
                 count_d = 0;
             }
 
+            if (((pat_position.x - gabarito_position.x <= 5) && (pat_position.y - gabarito_position.y <= 5) && ((pat_position.x - gabarito_position.x >= 0) && (pat_position.x - gabarito_position.x <= 5)))) {
+                pegou_gabarito = true;
             }
-
+            
             DrawTexture(room13bj, 0, 0, WHITE);
             DrawTextureRec(patrickEtapa1, pat1Rec, pat_position, WHITE);
-        }
+            DrawFPS(largura-90, altura-30);
 
-        //DrawText("Titi brabo!", 12/2, 12/2, 16, DARKGRAY);
+            if (!pegou_gabarito) DrawTextureRec(gabarito, gabarito_rec, gabarito_position, WHITE);
+        }
 
         EndDrawing();
     }
