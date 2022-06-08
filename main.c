@@ -29,6 +29,9 @@ int main(void) {
     Texture2D patrickEtapa2 = LoadTexture("textures/Patrick_etapa2.png");
     Rectangle pat1Rec = { 0.0f, 0.0f, (float)patrickEtapa1.width/6, (float)patrickEtapa1.height/2 }; 
     Rectangle frameRec = { 0.0f, 0.0f, (float)patrickEtapa2.width/3, (float)patrickEtapa2.height };
+    Vector2 pericles_position = { (float)20, (float)altura };
+    Texture2D periclesEtapa1 = LoadTexture("textures/PatrickPersonagem.png");
+    Rectangle periclesRec1 = { 0.0f, 0.0f, (float)patrickEtapa1.width/6, (float)patrickEtapa1.height/2 };
 
     // initializing gabarito
     Texture2D gabarito = LoadTexture("textures/GABARITO.png");
@@ -39,6 +42,7 @@ int main(void) {
     bool inicia_imagem = true;
     bool inicia_texto = false;
     bool inicia_jogo = false;
+    bool inicia_pericles = false;
     bool pegou_gabarito = false;
 
     // Counters for the Intro
@@ -102,7 +106,6 @@ int main(void) {
             if(inicia_jogo == false)
             {
                 DrawTexture(logo_menu, 0, 50, WHITE);
-                //DrawText("AJUDE PATRICK A ROUBAR O GABARITO!",20,20,30, WHITE);
                 DrawTexture(botao_start, 0, 60, WHITE);
                 DrawRectangle(largura/2-300, altura-300, largura/2-20, 40, (Color){0,0,0,150});
                 DrawTexture(botao_instru, 0, 30, WHITE);
@@ -110,6 +113,7 @@ int main(void) {
                 if(IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_ENTER))
                 {
                     inicia_jogo=true;
+                    inicia_pericles = true;
                 }
             }
         }
@@ -176,9 +180,6 @@ int main(void) {
 
                     last_key = 'S';
                     pat_position.y += 2.0f;
-                }
-            if (last_key = 'W'){
-                count_d = 0;
             }
 
             if (((pat_position.x - gabarito_position.x <= 5) && (pat_position.y - gabarito_position.y <= 5) && ((pat_position.x - gabarito_position.x >= 0) && (pat_position.x - gabarito_position.x <= 5)))) {
@@ -187,9 +188,15 @@ int main(void) {
             
             DrawTexture(room13bj, 0, 0, WHITE);
             DrawTextureRec(patrickEtapa1, pat1Rec, pat_position, WHITE);
-            DrawFPS(largura-90, altura-30);
+            DrawTextureRec(periclesEtapa1, periclesRec1, pericles_position, WHITE);
 
-            if (!pegou_gabarito) DrawTextureRec(gabarito, gabarito_rec, gabarito_position, WHITE);
+            if (!pegou_gabarito) {
+                DrawTextureRec(gabarito, gabarito_rec, gabarito_position, WHITE);
+                DrawText("Maravilha! Péricles saiu e deixou cair o gabarito!", 100, 100, 25, BLACK);
+            }
+            else {
+                DrawText("Corra antes que Péricles volte!", 100, 100, 25, BLACK);
+            }
         }
 
         EndDrawing();
