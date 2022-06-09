@@ -78,12 +78,12 @@ Project is: In progress. We have future plans to extend the game!
 
 ## Team
 
-| Student           | Contact                    |
-| ----------------  | -------------------------- |
-| Flávio Vieira     | flaviotefilho@gmail.com    |
-| Gabriel Grinspun  | diegoovmoura@gmail.com     |
-| Gabriel Parísio   | diegoovmoura@gmail.com     |
-| Julio Coutinho    | diegoovmoura@gmail.com     |
-| Luís Cruz         | diegoovmoura@gmail.com     |
-| Patrick Catchpole | diegoovmoura@gmail.com     |
-| Rafael Alves      | rjhxalves@gmail.com        |
+| Student           | Contact                         |
+| ----------------  | ------------------------------- |
+| Flávio Vieira     | flaviotefilho@gmail.com         |
+| Gabriel Grinspun  | gabrielsallesgrinspun@gmail.com |
+| Gabriel Parísio   | gabrielparisio@hotmail.com      |
+| Julio Coutinho    | diegoovmoura@gmail.com          |
+| Luís Cruz         | diegoovmoura@gmail.com          |
+| Patrick Catchpole | diegoovmoura@gmail.com          |
+| Rafael Alves      | rjhxalves@gmail.com             |
