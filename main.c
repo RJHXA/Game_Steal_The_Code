@@ -114,7 +114,7 @@ int main(void) {
     coin_audio = LoadSound("audios/coin_audio.mp3");
     obstaculo_audio = LoadSound("audios/obstaculo_audio.mp3");
 
-    SetSoundVolume(obstaculo_audio, 0.4);
+    SetSoundVolume(obstaculo_audio, 1.5);
 
     //****************************** Init ENEMY's ************************************/
     for (int i = 0; i < MAX_ENEMIES; i++)
@@ -324,7 +324,7 @@ int main(void) {
         {
             if(patrick_alive == true && score < 500)
             {
-                SetMusicVolume(audio_jogo, 0.4);
+                SetMusicVolume(audio_jogo, 1.5);
                 UpdateMusicStream(audio_jogo);
 
                 // Background and Street Movements
