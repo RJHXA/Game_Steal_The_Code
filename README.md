@@ -83,7 +83,7 @@ Project is: In progress. We have future plans to extend the game!
 | Flávio Vieira     | flaviotefilho@gmail.com         |
 | Gabriel Grinspun  | gabrielsallesgrinspun@gmail.com |
 | Gabriel Parísio   | gabrielparisio@hotmail.com      |
-| Julio Coutinho    | diegoovmoura@gmail.com          |
-| Luís Cruz         | diegoovmoura@gmail.com          |
-| Patrick Catchpole | diegoovmoura@gmail.com          |
+| Julio Coutinho    | ????                            |
+| Luís Cruz         | ????                            |
+| Patrick Catchpole | ????                            |
 | Rafael Alves      | rjhxalves@gmail.com             |
